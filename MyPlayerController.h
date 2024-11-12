@@ -8,6 +8,8 @@
 class UInputMappingContext;
 class UInputAction;
 class UUserWidget;
+class UWidget;
+class UPanelWidget;
 
 UCLASS()
 class EXPERIMENTAL_API AMyPlayerController : public APlayerController
@@ -52,20 +54,16 @@ private:
     void PauseGame(const FInputActionValue& Value);
     void ShowPauseMenu();
     void RemovePauseMenu();
-    void MenuUp(const FInputActionValue& Value);
-    void MenuDown(const FInputActionValue& Value);
-    void MenuLeft(const FInputActionValue& Value);
-    void MenuRight(const FInputActionValue& Value);
-    void MenuSelect(const FInputActionValue& Value);
+    void NavigateUp(const FInputActionValue& Value);
+    void NavigateDown(const FInputActionValue& Value);
+    void NavigateLeft(const FInputActionValue& Value);
+    void NavigateRight(const FInputActionValue& Value);
+    void Confirm(const FInputActionValue& Value);
     void MenuBack(const FInputActionValue& Value);
 
+    void SetUserFocusToNextWidget(UWidget* CurrentWidget, EUINavigation NavigationDirection);
+    UWidget* GetFocusedWidget();
+
+
     UUserWidget* PauseMenuWidgetInstance;
-
-    UUserWidget* PauseMenuWidgetInstance; 
-    UWidget* GetFocusedWidget(); 
-    UWidget* FindNextWidget(UWidget* CurrentWidget, ENavigationDirection Direction)
-
-    // Add member variables to keep track of selected menu item
-    int32 CurrentMenuIndex;
-    TArray<UUserWidget*> MenuItems; // Assumes menu items are UserWidgets
 };
